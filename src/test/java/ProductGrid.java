@@ -24,7 +24,7 @@ public class ProductGrid {
     }
 
     @Test
-    public void addSignleVariantToCart() {
+    public void addSingleVariantToCart() {
         List<WebElement> allProducts = browserWindow.findElements(FIRST_PRODUCT_IN_GRID);
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getText().contains("models"));
