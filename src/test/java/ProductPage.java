@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ProductGrid {
+public class ProductPage {
     private final By FIRST_PRODUCT_IN_GRID = By.xpath(".//*[@id='list-page-right']//div/div/a");
     private final By ADD_TO_CART_BTN = By.xpath(".//*[@data-externalid='add-to-cart']");
 
@@ -26,14 +26,11 @@ public class ProductGrid {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test
-    public void addSingleVariantToCart() {
-        List<WebElement> allProducts = driver.findElements(FIRST_PRODUCT_IN_GRID);
-        // Loop to find product which doesn't contain models
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getText().contains("models")) { }
-            else { wait.until(ExpectedConditions.elementToBeClickable(allProducts.get(i))).click(); }
-        }
-    }
-//        wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
+//    @Test
+//    public void addSingleVariantToCart() {
+//        List<WebElement> allProducts = driver.findElements(FIRST_PRODUCT_IN_GRID);
+//        for (int i = 0; i < allProducts.size(); i++) {
+//            if (allProducts.get(i).getText().contains("models")) { }
+//            else { wait.until(ExpectedConditions.elementToBeClickable(allProducts.get(i))).click(); }
+//        }
 }
