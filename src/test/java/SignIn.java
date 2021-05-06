@@ -13,7 +13,7 @@ public class SignIn {
     private final By CUSTOMER_AUTHORIZED_PROOF = By.id("authorized-customer-greeting");
 
     @Test
-    public void signInAction() {
+    public void signIn() { //Signing in as an existing customer
         System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();

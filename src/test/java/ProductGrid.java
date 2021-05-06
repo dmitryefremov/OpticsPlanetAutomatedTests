@@ -2,6 +2,7 @@ import com.sun.scenario.effect.impl.EffectPeer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,14 +27,8 @@ public class ProductGrid {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test
-    public void addSingleVariantToCart() {
-        List<WebElement> allProducts = driver.findElements(FIRST_PRODUCT_IN_GRID);
-        // Loop to find product which doesn't contain models
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getText().contains("models")) { }
-            else { wait.until(ExpectedConditions.elementToBeClickable(allProducts.get(i))).click(); }
-        }
+    @Test //Checking sorting on Product Grid
+    public void checkingSorting() {
+
     }
-//        wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
 }
