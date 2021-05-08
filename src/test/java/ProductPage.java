@@ -10,9 +10,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class ProductPage {
+    //Product Page Locators
     private final By ALL_PRODUCTS_IN_GRID = By.xpath(".//*[@id='list-page-right']//div/div/a");
     private final By ADD_TO_CART_BTN = By.xpath(".//button[@data-externalid='add-to-cart']");
-    private final By STEP_0_CLOSE_BTN = By.xpath(".//span[@class='fancy-dropdown-close-button']");
+    private final By PRODUCT_DESCRIPTION = By.xpath(".//div[@id='page-header-text']/h1");
+
+    //Step Zero Locators
+    private final By STEP_0_CLOSE = By.xpath(".//span[@class='fancy-dropdown-close-button']/span");
+    private final By STEP_0_KEEP_SHOPPING = By.xpath(".//span[@id='cart-items-popup-keep-shopping']");
+    private final By STEP_0_POP_UP = By.xpath(".//div[contains(@id, 'cart-items-popup-container')]");
+    private final By STEP_0_VIEW_CART = By.xpath(".//a[@id='cart-items-popup-edit']");
+
+    //Cart Locators
+    private final By PRODUCT_DESCRIPTION_CART = By.xpath(".//td[@class='cart-basket-name']/a");
 
     private WebDriverWait wait;
     private WebDriver driver;
@@ -37,8 +47,28 @@ public class ProductPage {
             allProducts.get(i).click();
             break;
         }
+        //Getting Product Name and crop it to first 15 characters
+        String productNameOnProductPage = driver.findElement(PRODUCT_DESCRIPTION).getText();
+        int startIndex = 15;
+        int stopIndex = productNameOnProductPage.length();
+        StringBuilder cropped01 = new StringBuilder(productNameOnProductPage);
+        cropped01.delete(startIndex, stopIndex);
+
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE_BTN)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(STEP_0_VIEW_CART)).click();
+
+        //Getting Product Name and crop it to first 15 characters
+        String productNameOnCart = driver.findElement(PRODUCT_DESCRIPTION_CART).getText();
+        int startIndex02 = 15;
+        int stopIndex02 = productNameOnProductPage.length();
+        StringBuilder cropped02 = new StringBuilder(productNameOnCart);
+        cropped02.delete(startIndex, stopIndex);
+
+        //Getting sure its the same product
+        String productPageDesc = cropped01.toString();
+        String cartPageDesc = cropped02.toString();
+        if (productPageDesc.equals(cartPageDesc)) { }
+        else { wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click(); }
         driver.close();
     }
 
@@ -54,5 +84,6 @@ public class ProductPage {
             break;
         }
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE));
     }
 }
