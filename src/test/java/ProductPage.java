@@ -36,6 +36,14 @@ public class ProductPage {
         wait = new WebDriverWait(driver, 10);
     }
 
+    public static String cutString(String result){ //Method to cut String after specified symbol
+        int startIndex = 15;
+        int stopIndex = result.length();
+        StringBuilder croppedString = new StringBuilder(result);
+        croppedString.delete(startIndex, stopIndex);
+        return result = croppedString.toString();
+    }
+
     @Test //Adding a product to the Cart from a single variant page
     public void addSingleVariantToCart() {
         List<WebElement> allProducts = driver.findElements(ALL_PRODUCTS_IN_GRID);
@@ -49,25 +57,17 @@ public class ProductPage {
         }
         //Getting Product Name and crop it to first 15 characters
         String productNameOnProductPage = driver.findElement(PRODUCT_DESCRIPTION).getText();
-        int startIndex = 15;
-        int stopIndex = productNameOnProductPage.length();
-        StringBuilder cropped01 = new StringBuilder(productNameOnProductPage);
-        cropped01.delete(startIndex, stopIndex);
+        productNameOnProductPage = cutString(productNameOnProductPage);
 
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
         wait.until(ExpectedConditions.elementToBeClickable(STEP_0_VIEW_CART)).click();
 
         //Getting Product Name and crop it to first 15 characters
         String productNameOnCart = driver.findElement(PRODUCT_DESCRIPTION_CART).getText();
-        int startIndex02 = 15;
-        int stopIndex02 = productNameOnProductPage.length();
-        StringBuilder cropped02 = new StringBuilder(productNameOnCart);
-        cropped02.delete(startIndex, stopIndex);
+        productNameOnCart = cutString(productNameOnCart);
 
         //Getting sure its the same product
-        String productPageDesc = cropped01.toString();
-        String cartPageDesc = cropped02.toString();
-        if (productPageDesc.equals(cartPageDesc)) { }
+        if (productNameOnCart.equals(productNameOnProductPage)) { }
         else { wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click(); }
         driver.close();
     }
@@ -85,5 +85,7 @@ public class ProductPage {
         }
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
         wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE));
+
+
     }
 }
