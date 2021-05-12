@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -56,5 +57,10 @@ public class ProductGrid {
         wait.until(ExpectedConditions.elementToBeClickable(SORT_BY_BTN)).click();
         wait.until(ExpectedConditions.elementToBeClickable(DROP_DOWN_SORT_NEWEST)).click();
         driver.quit();
+    }
+
+    @AfterEach
+    public void closeBrowser() {
+        driver.close();
     }
 }

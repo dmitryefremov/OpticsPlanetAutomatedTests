@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -87,5 +88,10 @@ public class ProductPage {
         wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE));
 
 
+    }
+
+    @AfterEach
+    public void closeBrowser() {
+        driver.close();
     }
 }
