@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,8 @@ public class ProductGrid {
     private final By DROP_DOWN_SORT_Z_TO_A = By.xpath(".//li[@data-value='alphabetically_desc']");
     private final By DROP_DOWN_SORT_NEWEST = By.xpath(".//li[@data-value='newest']");
 
+    private final Logger LOGGER = LogManager.getLogger(ProductGrid.class);
+
     private WebDriverWait wait;
     private WebDriver driver;
 
@@ -32,8 +36,9 @@ public class ProductGrid {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test //Checking sorting on Product Grid
+    @Test
     public void checkingSorting() {
+        LOGGER.info("Checking sorting on Product Grid");
         wait.until(ExpectedConditions.elementToBeClickable(SORT_BY_BTN)).click();
         wait.until(ExpectedConditions.elementToBeClickable(DROP_DOWN_SORT_LOW_TO_HIGH)).click();
         wait.until(ExpectedConditions.elementToBeClickable(SORT_BY_BTN)).click();
