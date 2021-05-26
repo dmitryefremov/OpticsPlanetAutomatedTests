@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,8 @@ public class ProductPage {
     //Cart Locators
     private final By PRODUCT_DESCRIPTION_CART = By.xpath(".//td[@class='cart-basket-name']/a");
 
+    private final Logger LOGGER = LogManager.getLogger(ProductGrid.class);
+
     private WebDriverWait wait;
     private WebDriver driver;
 
@@ -33,22 +37,15 @@ public class ProductPage {
         System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        LOGGER.info("Navigating on a Rifle Scopes, Category Page");
         driver.get("https://www.opticsplanet.com/riflescopes.html");
         wait = new WebDriverWait(driver, 10);
-    }
-
-    public static String cutString(String result){ //Method to cut String after specified symbol
-        int startIndex = 15;
-        int stopIndex = result.length();
-        StringBuilder croppedString = new StringBuilder(result);
-        croppedString.delete(startIndex, stopIndex);
-        return result = croppedString.toString();
     }
 
     @Test //Adding a product to the Cart from a single variant page
     public void addSingleVariantToCart() {
         List<WebElement> allProducts = driver.findElements(ALL_PRODUCTS_IN_GRID);
-        //Loop to find product which contain models
+        LOGGER.info("Looking for a product which doesn't contain models");
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getText().contains("models")) {
                 continue;
@@ -56,25 +53,27 @@ public class ProductPage {
             allProducts.get(i).click();
             break;
         }
-        //Getting Product Name and crop it to first 15 characters
+        LOGGER.info("Getting Product Name and crop it to first 15 characters for a future comparison");
         String productNameOnProductPage = driver.findElement(PRODUCT_DESCRIPTION).getText();
         productNameOnProductPage = cutString(productNameOnProductPage);
 
+        LOGGER.info("Click on Add to Cart button");
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
+        LOGGER.info("Inside Step Zero - Click on View Cart button");
         wait.until(ExpectedConditions.elementToBeClickable(STEP_0_VIEW_CART)).click();
 
-        //Getting Product Name and crop it to first 15 characters
+        LOGGER.info("Getting Product Name and crop it to first 15 characters for a future comparison");
         String productNameOnCart = driver.findElement(PRODUCT_DESCRIPTION_CART).getText();
         productNameOnCart = cutString(productNameOnCart);
 
-        //Getting sure its the same product
+        LOGGER.info("Comparing Product Name");
         if (productNameOnCart.equals(productNameOnProductPage)) { }
         else { wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click(); }
-        driver.close();
     }
 
     @Test //Adding a product to the Cart from a multi variant page
     public void addMultiVariantToCart() {
+        LOGGER.info("Looking for a product which contain models");
         List<WebElement> allProducts = driver.findElements(ALL_PRODUCTS_IN_GRID);
         //Loop to find product which doesn't contain models
         for (int i = 0; i < allProducts.size(); i++) {
@@ -84,10 +83,20 @@ public class ProductPage {
             allProducts.get(i).click();
             break;
         }
+        LOGGER.info("Getting Product Name and crop it to first 15 characters for a future comparison");
         wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
+        LOGGER.info("Inside Step Zero - Click on View Cart button");
         wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE));
 
 
+    }
+
+    private static String cutString(String result){ //Method to cut String after specified symbol
+        int startIndex = 15;
+        int stopIndex = result.length();
+        StringBuilder croppedString = new StringBuilder(result);
+        croppedString.delete(startIndex, stopIndex);
+        return result = croppedString.toString();
     }
 
     @AfterEach

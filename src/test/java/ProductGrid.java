@@ -32,6 +32,7 @@ public class ProductGrid {
         System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        LOGGER.info("Opening Gun Parts Category Page");
         driver.get("https://www.opticsplanet.com/gun-parts.html");
         wait = new WebDriverWait(driver, 10);
     }
@@ -61,11 +62,10 @@ public class ProductGrid {
         wait.until(ExpectedConditions.elementToBeClickable(DROP_DOWN_SORT_Z_TO_A)).click();
         wait.until(ExpectedConditions.elementToBeClickable(SORT_BY_BTN)).click();
         wait.until(ExpectedConditions.elementToBeClickable(DROP_DOWN_SORT_NEWEST)).click();
-        driver.quit();
     }
 
-    @AfterEach
-    public void closeBrowser() {
-        driver.close();
-    }
+//    @AfterEach
+//    public void closeBrowser() {
+//        driver.close();
+//    }
 }
