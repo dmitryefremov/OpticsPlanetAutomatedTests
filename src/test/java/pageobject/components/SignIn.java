@@ -1,3 +1,5 @@
+package pageobject.components;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
@@ -8,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobject.pages.ProductGridPage;
 
 public class SignIn {
     private final By SIGN_IN_BUTTON = By.id("sign-in-popup-button");
@@ -16,7 +19,7 @@ public class SignIn {
     private final By SIGN_IN_SUBMIT_BTN = By.xpath(".//*/button[@type='submit']");
     private final By CUSTOMER_AUTHORIZED_PROOF = By.id("authorized-customer-greeting");
 
-    private final Logger LOGGER = LogManager.getLogger(ProductGrid.class);
+    private final Logger LOGGER = LogManager.getLogger(ProductGridPage.class);
 
     private WebDriverWait wait;
     private WebDriver driver;

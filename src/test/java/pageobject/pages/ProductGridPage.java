@@ -1,6 +1,7 @@
+package pageobject.pages;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -8,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductGrid {
+public class ProductGridPage {
     private final By ALL_PRODUCTS_IN_GRID = By.xpath(".//*[@id='list-page-right']//div/div/a");
     private final By SORT_BY_BTN = By.xpath(".//span[@class='e-dropdown-list-btn__text']");
     private final By DROP_DOWN_SORT_LOW_TO_HIGH = By.xpath(".//li[@data-value='lowest-price']");
@@ -22,7 +23,7 @@ public class ProductGrid {
     private final By DROP_DOWN_SORT_Z_TO_A = By.xpath(".//li[@data-value='alphabetically_desc']");
     private final By DROP_DOWN_SORT_NEWEST = By.xpath(".//li[@data-value='newest']");
 
-    private final Logger LOGGER = LogManager.getLogger(ProductGrid.class);
+    private final Logger LOGGER = LogManager.getLogger(ProductGridPage.class);
 
     private WebDriverWait wait;
     private WebDriver driver;

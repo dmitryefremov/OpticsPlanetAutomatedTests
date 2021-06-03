@@ -1,3 +1,5 @@
+package pageobject.pages;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
@@ -27,7 +29,7 @@ public class ProductPage {
     //Cart Locators
     private final By PRODUCT_DESCRIPTION_CART = By.xpath(".//td[@class='cart-basket-name']/a");
 
-    private final Logger LOGGER = LogManager.getLogger(ProductGrid.class);
+    private final Logger LOGGER = LogManager.getLogger(ProductGridPage.class);
 
     private WebDriverWait wait;
     private WebDriver driver;
