@@ -39,8 +39,8 @@ public class SignIn {
         LOGGER.info("Clicking Sign In Button");
         wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_BUTTON)).click();
         LOGGER.info("Providing customer e-mail and password");
-        wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_EMAIL_INPUT)).sendKeys("dvorbehat@gmail.com"); //You can change e-mail for login
-        wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_PASSWORD_INPUT)).sendKeys("qweqwe13"); //You can change password for login
+        wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_EMAIL_INPUT)).sendKeys("zzzz@gmail.com"); //You can change e-mail for login
+        wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_PASSWORD_INPUT)).sendKeys("zzzz"); //You can change password for login
         LOGGER.info("Trying to Sign In");
         wait.until(ExpectedConditions.elementToBeClickable(SIGN_IN_SUBMIT_BTN)).click();
         LOGGER.info("Checking customer is really signed in");
