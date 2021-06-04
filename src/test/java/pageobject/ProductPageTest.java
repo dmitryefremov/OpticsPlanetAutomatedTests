@@ -31,8 +31,8 @@ public class ProductPageTest {
     private final By PRODUCT_DESCRIPTION_CART = By.xpath(".//td[@class='cart-basket-name']/a");
 
     @Test
-    //Adding a product to the Cart from a single variant page
     public void addSingleVariantToCart() {
+        LOGGER.info("Test: Adding a product to the Cart from a single variant page");
         baseFunc.openPage("https://www.opticsplanet.com/riflescopes.html?_iv_gridSize=240");
         LOGGER.info("Opening Product Page");
         productPage.findSingleVariantProduct().click();
@@ -49,5 +49,29 @@ public class ProductPageTest {
         String productNameOnCart = productPage.getProductNameAsString(PRODUCT_DESCRIPTION_CART);
         LOGGER.info("Comparing Product Name from Product Page versus Cart");
         baseFunc.compareTwoStrings(productNameOnCart, productNameOnProductPage);
+
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void addMultiVariantToCart() {
+        LOGGER.info("Test: Adding a product to the Cart from a multi variant page");
+        baseFunc.openPage("https://www.opticsplanet.com/riflescopes.html?_iv_gridSize=240");
+        LOGGER.info("Opening Product Page");
+        productPage.findMultiVariantProduct().click();
+
+        LOGGER.info("Saving Product Name on Product Page");
+        String productNameOnProductPage = productPage.getProductNameAsString(PRODUCT_DESCRIPTION);
+
+        LOGGER.info("Click on Add to Cart button");
+        baseFunc.click(ADD_TO_CART_BTN);
+        LOGGER.info("Inside Step Zero - Click on View Cart button");
+        baseFunc.click(STEP_0_VIEW_CART);
+
+        LOGGER.info("Saving Product Name on Cart");
+        String productNameOnCart = productPage.getProductNameAsString(PRODUCT_DESCRIPTION_CART);
+        LOGGER.info("Comparing Product Name from Product Page versus Cart");
+
+        baseFunc.closeBrowser();
     }
 }

@@ -48,27 +48,25 @@ public class ProductPage {
         return singleProduct;
     }
 
+    public WebElement findMultiVariantProduct() {
+        List<WebElement> allProducts = baseFunc.findElements(ALL_PRODUCTS_IN_GRID);
+        LOGGER.info("Looking for a product which contain models");
+        WebElement variantProduct = null;
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getText().contains("models")) {
+                variantProduct = allProducts.get(i);
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+        return variantProduct;
+    }
+
     public String getProductNameAsString(By locator) {
         LOGGER.info("Getting Product Name and crop it to first 15 characters for a future comparison");
         String text = baseFunc.getText(locator);
         return text = baseFunc.cutString(text);
     }
-
-//    @Test //Adding a product to the Cart from a multi variant page
-//    public void addMultiVariantToCart() {
-//        LOGGER.info("Looking for a product which contain models");
-//        List<WebElement> allProducts = driver.findElements(ALL_PRODUCTS_IN_GRID);
-//        //Loop to find product which doesn't contain models
-//        for (int i = 0; i < allProducts.size(); i++) {
-//            if (!allProducts.get(i).getText().contains("models")) {
-//                continue;
-//            }
-//            allProducts.get(i).click();
-//            break;
-//        }
-//        LOGGER.info("Getting Product Name and crop it to first 15 characters for a future comparison");
-//        wait.until(ExpectedConditions.elementToBeClickable(ADD_TO_CART_BTN)).click();
-//        LOGGER.info("Inside Step Zero - Click on View Cart button");
-//        wait.until(ExpectedConditions.elementToBeClickable(STEP_0_CLOSE));
-//    }
 }
