@@ -46,6 +46,7 @@ public class BaseFunc {
     public void click(WebElement element) {
         LOGGER.info("Clicking on web element");
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        Assertions.assertFalse(true, "Element isn't clickable!");
     }
 
     public List<WebElement> findElements(By locator) {
@@ -94,4 +95,20 @@ public class BaseFunc {
         stringOne.equals(stringTwo);
         Assertions.assertFalse(false, "Different Text Detected!");
     }
+
+//    public void mouseOver() {
+//        Actions action = new Actions(driver);
+//        WebElement we = driver.findElement(By.xpath("//html/body/div[13]/ul/li[4]/a"));
+//        action.moveToElement(we).build().perform();
+//    }
+
+    public String getUrlFromLocator(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator)).getAttribute("href");
+    }
+
+    public getCurrentUrl {
+        driver.getCurrentUrl();
+    }
+
+
 }
