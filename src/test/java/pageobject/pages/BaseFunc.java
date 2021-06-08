@@ -46,7 +46,19 @@ public class BaseFunc {
     public void click(WebElement element) {
         LOGGER.info("Clicking on web element");
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        Assertions.assertFalse(true, "Element isn't clickable!");
+        Assertions.assertFalse(false, "Element isn't clickable!");
+    }
+
+    public void isVisible(By locator) {
+        LOGGER.info("Element is visible by: " + locator);
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        Assertions.assertFalse( false, "Element is not available!");
+    }
+
+    public void isVisible(WebElement element) {
+        LOGGER.info("Element is visible by: " + element);
+        wait.until(ExpectedConditions.visibilityOf(element));
+        Assertions.assertFalse(false, "Element isn't available!");
     }
 
     public List<WebElement> findElements(By locator) {
@@ -91,14 +103,13 @@ public class BaseFunc {
     }
 
     public void compareTwoStrings(String stringOne, String stringTwo) {
-        LOGGER.info("Comparing Product Name");
-        stringOne.equals(stringTwo);
-        Assertions.assertFalse(false, "Different Text Detected!");
+        LOGGER.info("Comparing Two Strings");
+        Assertions.assertEquals(stringOne, stringTwo, "Different text detected!");
     }
 
-//    public void mouseOver() {
+//    public void mouseOver(By locator) {
 //        Actions action = new Actions(driver);
-//        WebElement we = driver.findElement(By.xpath("//html/body/div[13]/ul/li[4]/a"));
+//        WebElement we = driver.findElement(locator));
 //        action.moveToElement(we).build().perform();
 //    }
 
@@ -106,8 +117,9 @@ public class BaseFunc {
         return wait.until(ExpectedConditions.elementToBeClickable(locator)).getAttribute("href");
     }
 
-    public getCurrentUrl {
-        driver.getCurrentUrl();
+    public String getCurrentUrl() {
+        LOGGER.info("Getting current URL");
+        return driver.getCurrentUrl();
     }
 
 

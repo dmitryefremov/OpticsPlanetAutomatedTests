@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import pageobject.pages.BaseFunc;
 import pageobject.pages.ProductPage;
 
@@ -13,8 +12,6 @@ public class ProductPageTest {
 
     private BaseFunc baseFunc = new BaseFunc();
     private ProductPage productPage = new ProductPage(baseFunc);
-
-    WebDriver driver;
 
     //Product Page Locators
     private final By ALL_PRODUCTS_IN_GRID = By.xpath(".//*[@id='list-page-right']//div/div/a");
