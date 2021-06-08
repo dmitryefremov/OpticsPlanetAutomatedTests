@@ -51,7 +51,7 @@ public class BaseFunc {
 
     public void isVisible(By locator) {
         LOGGER.info("Element is visible by: " + locator);
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         Assertions.assertFalse( false, "Element is not available!");
     }
 

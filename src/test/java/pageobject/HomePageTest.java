@@ -21,6 +21,17 @@ public class HomePageTest {
     private final By HOME_PAGE_BANNER_LINK = By.xpath("//*[@id='banner-container-inner']/a[3]");
     private final By POPULAR_BRANDS_FIRST_BRAND = By.xpath("//*[@id='brand-container-scroll-inner']/a[1]");
     private final By POPULAR_CATEGORIES_FIRST_CATEGORY = By.xpath("//a[text()='Riflescopes']");
+    private final By FEATURED_DEALS_LINK = By.xpath("//*[@id='featured-deal-carousel-scrollable']/a[1]");
+    private final By BEST_SELLERS_FIRST_PRODUCT = By.xpath("//*[@id='home-page-contents']/div[1]/div[2]/div[2]/div/div[1]/a");
+    private final By BEST_SELLERS_VIEW_LINK = By.xpath("//*[@id='home-page-contents']/div[1]/div[1]/a");
+    private final By TOP_RATED_FIRST_PRODUCT = By.xpath("//*[@id='home-page-contents']/div[2]/div[2]/div[2]/div/div[1]");
+    private final By TOP_RATED_VIEW_LINK = By.xpath("//*[@id='home-page-contents']/div[2]/div[1]/a");
+    private final By ON_SALE_FIRST_PRODUCT = By.xpath("//*[@id='home-page-contents']/div[3]/div[2]/div[2]/div/div[1]/a");
+    private final By ON_SALE_VIEW_LINK = By.xpath("//*[@id='home-page-contents']/div[3]/div[1]/a");
+    private final By NEW_PRODUCTS_FIRST_PRODUCT = By.xpath("//*[@id='home-page-contents']/div[4]/div[2]/div[2]/div/div[1]");
+    private final By NEW_PRODUCTS_LINK = By.xpath("//*[@id='home-page-contents']/div[4]/div[1]/a");
+    private final By EXCLUSIVE_PRODUCTS_FIRST_PRODUCT = By.xpath("//*[@id='home-page-contents']/div[5]/div[2]/div[2]/div/div[1]");
+    private final By EXCLUSIVE_PRODUCTS_LINK = By.xpath("//*[@id='home-page-contents']/div[5]/div[1]/a");
 
     @Test
     public void categoriesDropDownAtTheTop() {
@@ -36,7 +47,6 @@ public class HomePageTest {
         LOGGER.info("Checking page is not 404");
         baseFunc.isVisible(LOGO);
         baseFunc.closeBrowser();
-
     }
 
     @Test
@@ -103,39 +113,109 @@ public class HomePageTest {
         baseFunc.closeBrowser();
     }
 
-//    @Test
-//    public void featuredDeals() {
-//        LOGGER.info("Test: Checking Featured Deals appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
-//
-//    @Test
-//    public void dealsOnBestSellers() {
-//        LOGGER.info("Test: Checking Deals on Best Sellers appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
-//
-//    @Test
-//    public void topRated() {
-//        LOGGER.info("Test: Checking Top Rated appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
-//
-//    @Test
-//    public void onSale() {
-//        LOGGER.info("Test: Checking On Sale appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
-//
-//    @Test
-//    public void newProducts() {
-//        LOGGER.info("Test: Checking New Products appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
-//
-//    @Test
-//    public void exclusiveProducts() {
-//        LOGGER.info("Test: Checking Exclusive Products appearance and clickability");
-//        baseFunc.openPage("https://www.opticsplanet.com/");
-//    }
+    @Test
+    public void featuredDeals() {
+        LOGGER.info("Test: Checking Featured Deals appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("Saving url from Featured Deal");
+        String HomePageUrl = baseFunc.getUrlFromLocator(FEATURED_DEALS_LINK);
+
+        LOGGER.info("Clicking on Featured Deal");
+        baseFunc.click(FEATURED_DEALS_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void dealsOnBestSellers() {
+        LOGGER.info("Test: Checking Deals on Best Sellers appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("First product appear in carousel");
+        baseFunc.isVisible(BEST_SELLERS_FIRST_PRODUCT);
+        LOGGER.info("Saving url from View All Button");
+        String HomePageUrl = baseFunc.getUrlFromLocator(BEST_SELLERS_VIEW_LINK);
+
+        LOGGER.info("Clicking on View All Button");
+        baseFunc.click(BEST_SELLERS_VIEW_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void topRated() {
+        LOGGER.info("Test: Checking Top Rated appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("First product appear in carousel");
+        baseFunc.isVisible(TOP_RATED_FIRST_PRODUCT);
+        LOGGER.info("Saving url from View All Button");
+        String HomePageUrl = baseFunc.getUrlFromLocator(TOP_RATED_VIEW_LINK);
+
+        LOGGER.info("Clicking on View All Button");
+        baseFunc.click(TOP_RATED_VIEW_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void onSale() {
+        LOGGER.info("Test: Checking On Sale appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("First product appear in carousel");
+        baseFunc.isVisible(ON_SALE_FIRST_PRODUCT);
+        LOGGER.info("Saving url from View All Button");
+        String HomePageUrl = baseFunc.getUrlFromLocator(ON_SALE_VIEW_LINK);
+
+        LOGGER.info("Clicking on View All Button");
+        baseFunc.click(ON_SALE_VIEW_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void newProducts() {
+        LOGGER.info("Test: Checking New Products appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("First product appear in carousel");
+        baseFunc.isVisible(NEW_PRODUCTS_FIRST_PRODUCT);
+        LOGGER.info("Saving url from View All Button");
+        String HomePageUrl = baseFunc.getUrlFromLocator(NEW_PRODUCTS_LINK);
+
+        LOGGER.info("Clicking on View All Button");
+        baseFunc.click(NEW_PRODUCTS_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
+
+    @Test
+    public void exclusiveProducts() {
+        LOGGER.info("Test: Checking Exclusive Products appearance and clickability");
+        baseFunc.openPage("https://www.opticsplanet.com/");
+        LOGGER.info("First product appear in carousel");
+        baseFunc.isVisible(EXCLUSIVE_PRODUCTS_FIRST_PRODUCT);
+        LOGGER.info("Saving url from View All Button");
+        String HomePageUrl = baseFunc.getUrlFromLocator(EXCLUSIVE_PRODUCTS_LINK);
+
+        LOGGER.info("Clicking on View All Button");
+        baseFunc.click(EXCLUSIVE_PRODUCTS_LINK);
+        String LandingPageUrl = baseFunc.getCurrentUrl();
+        baseFunc.compareTwoStrings(HomePageUrl, LandingPageUrl);
+        LOGGER.info("Checking page is not 404");
+        baseFunc.isVisible(LOGO);
+        baseFunc.closeBrowser();
+    }
 }
