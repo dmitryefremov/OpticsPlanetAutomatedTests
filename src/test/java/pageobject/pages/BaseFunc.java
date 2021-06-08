@@ -122,5 +122,15 @@ public class BaseFunc {
         return driver.getCurrentUrl();
     }
 
+    public void type(By locator, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
+        Assertions.assertFalse(false, "Can't type text! Element isn't clickable!");
+    }
+
+    public void type(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(text);
+        Assertions.assertFalse(false, "Can't type text! Element isn't clickable!");
+    }
+
 
 }
