@@ -40,7 +40,7 @@ public class BaseFunc {
     public void click(By locator) {
         LOGGER.info("Clicking on element by: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-//        Assertions.assertFalse( true, "Element is not available!");
+        Assertions.assertFalse( false, "Element is not available!");
     }
 
     public void click(WebElement element) {
@@ -82,8 +82,13 @@ public class BaseFunc {
     }
 
     public String getText(By locator) {
-        LOGGER.info("Getting text from web element");
+        LOGGER.info("Getting text from " + locator + " locator");
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
+
+    public String getText(String text) {
+        LOGGER.info("Getting text from " + text + " locator");
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(text))).getText();
     }
 
     public void closeBrowser() {
@@ -105,6 +110,16 @@ public class BaseFunc {
     public void compareTwoStrings(String stringOne, String stringTwo) {
         LOGGER.info("Comparing Two Strings");
         Assertions.assertEquals(stringOne, stringTwo, "Different text detected!");
+    }
+
+    public void shouldContains(String text1, String text2) {
+        LOGGER.info("Checking string contains provided text");
+        int startIndex = text2.length();
+        int stopIndex = text1.length();
+        StringBuilder croppedString = new StringBuilder(text1);
+        croppedString.delete(startIndex, stopIndex);
+        text1 = croppedString.toString();
+        Assertions.assertEquals(text1, text2);
     }
 
 //    public void mouseOver(By locator) {
