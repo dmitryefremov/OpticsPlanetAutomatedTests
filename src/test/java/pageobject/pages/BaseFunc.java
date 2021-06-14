@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,8 +21,17 @@ public class BaseFunc {
 
     public BaseFunc() {
         LOGGER.info("Starting web browser");
-        System.setProperty("webdriver.chrome.driver", "c://chromedriver.exe");
-        driver = new ChromeDriver();
+        try {
+            String chromeDriverPath = System.getenv("chrome_driver_path");
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        } catch (NullPointerException e) {
+            System.setProperty("webdriver.chrome.driver", "c://chromedriver.exe");
+        }
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless", //Remove this if you want to enable browser: "--headless",
+                "--disable-gpu", "--window-size=1920,1200", "--ignore-certificate-errors",
+                "--disable-extensions", "--no-sandbox", "--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 10);

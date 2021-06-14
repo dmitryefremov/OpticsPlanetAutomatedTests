@@ -2,6 +2,7 @@ package pageobject.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductGridPage {
+    private BaseFunc baseFunc = new BaseFunc();
+
 //    private final By ALL_PRODUCTS_IN_GRID = By.xpath(".//*[@id='list-page-right']//div/div/a");
 //    private final By SORT_BY_BTN = By.xpath(".//span[@class='e-dropdown-list-btn__text']");
 //    private final By DROP_DOWN_SORT_LOW_TO_HIGH = By.xpath(".//li[@data-value='lowest-price']");
@@ -29,8 +32,8 @@ public class ProductGridPage {
 //    public ProductGridPage(BaseFunc baseFunc) { this.baseFunc = baseFunc; }
 
 
-//    @AfterEach
-//    public void closeBrowser() {
-//        driver.close();
-//    }
+    @AfterEach
+    public void closeBrowser() {
+        baseFunc.closeBrowser();
+    }
 }

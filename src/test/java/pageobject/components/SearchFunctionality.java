@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import pageobject.pages.BaseFunc;
 
-public class searchFunctionality {
+public class SearchFunctionality {
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
     private BaseFunc baseFunc = new BaseFunc();
