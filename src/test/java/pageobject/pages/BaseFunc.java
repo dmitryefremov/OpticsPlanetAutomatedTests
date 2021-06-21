@@ -28,7 +28,7 @@ public class BaseFunc {
             System.setProperty("webdriver.chrome.driver", "c://chromedriver.exe");
         }
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless", //Remove this if you want to enable browser: "--headless",
+        options.addArguments(//Remove this if you want to enable browser: "--headless",
                 "--disable-gpu", "--window-size=1920,1200", "--ignore-certificate-errors",
                 "--disable-extensions", "--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
@@ -50,25 +50,21 @@ public class BaseFunc {
     public void click(By locator) {
         LOGGER.info("Clicking on element by: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-        Assertions.assertFalse( false, "Element is not available!");
     }
 
     public void click(WebElement element) {
         LOGGER.info("Clicking on web element");
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        Assertions.assertFalse(false, "Element isn't clickable!");
     }
 
     public void isVisible(By locator) {
         LOGGER.info("Element is visible by: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-        Assertions.assertFalse( false, "Element is not available!");
     }
 
     public void isVisible(WebElement element) {
         LOGGER.info("Element is visible by: " + element);
         wait.until(ExpectedConditions.visibilityOf(element));
-        Assertions.assertFalse(false, "Element isn't available!");
     }
 
     public List<WebElement> findElements(By locator) {
