@@ -1,0 +1,5 @@
+.idea
+!.idea/externalDependencies.xml
+target
+OpticsPlanetAutomatedTests.iml
+Local_env
