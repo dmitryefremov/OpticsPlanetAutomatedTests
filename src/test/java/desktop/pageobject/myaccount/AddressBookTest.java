@@ -50,8 +50,8 @@ public class AddressBookTest {
         LOGGER.info("Clicking Sign In Button");
         baseFunc.click(SIGN_IN_BUTTON);
         LOGGER.info("Providing customer e-mail and password");
-        baseFunc.type(SIGN_IN_EMAIL_INPUT, "intexsysmobile+addressbook@gmail.com");
-        baseFunc.type(SIGN_IN_PASSWORD_INPUT, "Intexsys757");
+        baseFunc.type(SIGN_IN_EMAIL_INPUT, "dfgdfgdfg");
+        baseFunc.type(SIGN_IN_PASSWORD_INPUT, "dfgdfgdfg");
 
         LOGGER.info("Trying to Sign In");
         baseFunc.click(SIGN_IN_SUBMIT_BTN);
